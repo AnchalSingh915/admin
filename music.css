@@ -1,0 +1,152 @@
+*{
+				margin:0;
+				padding:0;
+				box-sizing:border-box;
+				font-family:Arial, sans-serif;
+			}
+			body{
+				background:#121212;
+				color:white;
+			}
+			.box{
+				height:600px;
+				width:1500px;
+				border:1px solid black;
+				margin:0 auto;
+			}
+			.menu{
+				height:600px;
+				width:400px;
+				border:1px solid black;
+				float:left;
+				background:linear-gradient(180deg, #8A2BE2, #00FFFF);
+			}
+			.left-box{
+				height:600px;
+				width:1096px;
+				float:left;
+				display:flex;
+				flex-direction:column;
+			}
+			.head{
+				height:100px;
+				width:1096px;
+				border-bottom:1px solid black;
+				background:linear-gradient(135deg, #8A2BE2, #00FFFF);
+				display:flex;
+				align-items:center;
+				padding:0 20px;
+			}
+			.head h1{
+				flex:1;
+				color:white;
+				font-size:85px;
+			}
+			.board{
+				height:500px;
+				width:1095px;
+				padding:20px;
+				background:#121212;
+				overflow:auto;
+			}
+			
+			.foot{
+				height:100px;
+				width:1500px;
+				border:1px solid black;
+				clear:both;
+				background:#000;
+				color:#bbb;
+				display:flex;
+				justify-content:center;
+				align-items:center;
+				font-size:15px;
+			}
+			table.m1{
+				height:600px;
+				width:400px;
+				border:1px solid black;
+				border-collapse:collapse;
+			}
+			table.m1 tr th{
+				padding:10px;
+			}
+			table.m1 tr th a{
+				display:box;
+				color:black;
+				text-decoration:none;
+				font-size:35px;
+				font-weight:bold;
+				text-align:left;
+				padding-left:20px;
+			}
+			.logo{
+			  border-radius:50%;
+			  overflow:hidden;
+			}
+			
+			
+			.foot p{
+				font-size:20px;
+			}
+			 table.b1 {
+      border-collapse: collapse;
+      font-family: sans-serif;
+	  color:black;
+	  border-radius:20px;  
+	  width:1000px;
+	  margin-left:25px;
+    }
+    table.b1 th{
+		font-size:50px;
+		padding:20px;
+		border:10px solid skyblue;
+		background:white; 
+	}
+    table.b1 td{
+		font-size:30px;
+		padding:10px;
+		background:linear-gradient(135deg, #8A2BE2, #00FFFF);
+		border:10px solid skyblue;
+	}
+	input[type="text"]
+    {
+		height:50px;
+	}	
+	input[type="date"]
+    {
+		height:50px;
+		font-size:20px;
+	}
+	input[type="numeric"]
+    {
+		height:50px;
+	}
+	input[type="submit"]
+    {
+		height:70px;
+		width:25%;
+		margin-top:20px;
+		font-size:30px;
+		border-radius:15px;
+	}
+	 table.t1 {
+      border-collapse: collapse;
+      font-family: sans-serif;
+	  color:black;
+	  border-radius:20px;  
+	  width:1000px;
+	  margin-left:25px;
+    }
+    table.t1 th{
+		font-size:30px;
+		padding:20px;
+		border:10px solid skyblue;
+		background:white; 
+	}
+    table.t1 td{
+		font-size:20px;
+		padding:10px;
+		background:linear-gradient(135deg, #8A2BE2, #00FFFF);
+		border:10px solid skyblue;
+	}
