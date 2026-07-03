@@ -1,49 +1,42 @@
 <?php
-session_start();
-$uname=$pass="";
-if(isset($_POST['login']))
+include('inc/config.php');
+if(isset($_POST['signup']))
 {
 	extract($_POST);
-	include('inc/config.php');
-	$qs="select * from user where user_email='$email' and user_password='$password'";
-	$data=mysqli_query($con,$qs) or die(mysqli_error($con));
+	
+	$qs="select * from signup where email='$email' or cno='$cno'";
+	$data=mysqli_query($con,$qs)or die(mysqli_error($con));
 	if(mysqli_num_rows($data)>0)
-	{
-		$row=mysqli_fetch_array($data,MYSQLI_BOTH);
-		$_SESSION['user_name']=$row['user_name'];
-		if(isset($_POST['rem']))
-		{
-			setcookie('user_name',$email, time() +86400);
-			setcookie('user_pass',$password, time() +86400);
-		}		
-		header('location:dashboard.php');
+    {
+		echo "already exist";
 	}
 	else
 	{
-		echo "Invalid Useer ID or password";
-	}
+		$qs="insert into signup(name,email,cno)values('$name','$email','$cno')";
+		mysqli_query($con,$qs) or die(mysqli_error($con));
+    }
 }
 
-if(isset($_COOKIE['user_name']))
-{
-	$uname=$_COOKIE['user_name'];
-	$pass=$_COOKIE['user_pass'];
-}
+	
+		
 ?>
+
 
 <!doctype html>
 <html>
 	<head>
-		 <style>
-		    body{
-				background-image: url('images/img1.jpg');
+		<title>
+			signup
+		</title>
+		<style>
+			 body{
 				background-size:cover;
 				background-repeat:no-repeat;
 				background-attachment:fixed;
 			}
 
 			.box{ 
-			  height:150px;
+			  height:180px;
 			  width:300px;
               color:white;
 			  margin:auto;
@@ -67,34 +60,60 @@ if(isset($_COOKIE['user_name']))
 			#login{
 				height:70px;
 			}
-		 </style>
-	<head>
+		</style>
+		<script>
+			function check(data)
+			{
+				var req = new XMLHttpRequest();
+				req.open("GET","check-email.php?email=" + data, true);
+				req.send();
+				
+				req.onreadystatechange = function()
+				{
+					if(this.readyState ==4 && this.status == 200)
+					{
+						document.getElementById("s1").innerHTML = this.responseText;
+					}
+				};
+			}
+			function check1(data)
+			{
+				var req = new XMLHttpRequest();
+				req.open("GET","check-cno.php?cno=" + data, true);
+				req.send();
+				
+				req.onreadystatechange = function()
+				{
+					if(this.readyState ==4 && this.status == 200)
+					{
+						document.getElementById("s2").innerHTML = this.responseText;
+					}
+				};
+			}
+		</script>
+	</head>
 	<body>
-		<div class="box">
-			<form method="post">
-				<ta1ble>
-					<tr>
-						<th colspan="2">LOGIN</th>
-					</tr>
-					<tr>
-						<td>Username</td>
-					    <td><input type="email" name="email" value="<?php echo $uname; ?>"></td>
-					</tr>
-					<tr>
-						<td>Password</td>
-					    <td><input type="password" name="password" value="<?php echo $pass; ?>"></td>
-					</tr>
-					<tr>
-						<td></td>
-					    <td><input type="checkbox" name="rem"> Remember me</td>
-					</tr>
-					
-					<tr>
-						<td></td>
-					    <td id="login"><input type="submit" name="login" value="Login"></td>
-					</tr>
-				</table>
-			</form>
-		</div>
+	  <div class="box">
+		<form method="post">
+			<table>
+				<tr>
+					<td>Name</td>
+					<td><input type="text" name="name"/></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><input type="email" name="email" onblur="check(this.value)"/><span id="s1"></span></td>
+				</tr>
+				<tr>
+					<td>Contact no.</td>
+					<td><input type="numeric" max="10" name="cno" onblur="check1(this.value)"/><span id="s2"></span></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td id="login"><input type="submit" name="signup" value="signup"></td>
+				</tr>
+			</table>
+		</form>
+	  </div>
 	</body>
 </html>
